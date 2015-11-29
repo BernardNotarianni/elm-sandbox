@@ -2,7 +2,7 @@
 
 while true; do
 
-    elm make HelloWorld.elm --output=helloworld.js
+    elm make Main.elm --output=main.js
 
-    inotifywait -qr -e modify -e create -e move -e delete . --exclude "\.\#.*"
+    inotifywait -qr -e modify -e create -e move -e delete . --exclude "\.\#.*" --exclude "\.git"
 done

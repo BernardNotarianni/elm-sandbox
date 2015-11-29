@@ -2711,7 +2711,7 @@ Elm.HelloWorld.make = function (_elm) {
       _L.fromArray([]),
       $List.map($Html.text)(textLines));
    };
-   var main = A2($Html.div,
+   var view = A2($Html.div,
    _L.fromArray([$Html$Attributes.$class("container")]),
    _L.fromArray([A2($Html.div,
    _L.fromArray([$Html$Attributes.$class("row")]),
@@ -2726,8 +2726,10 @@ Elm.HelloWorld.make = function (_elm) {
                 _L.fromArray([]),
                 _L.fromArray([$Html.text("Let add some text here")]))
                 ,par(_L.fromArray(["This is another paragraph."]))]))]))]));
+   var main = view;
    _elm.HelloWorld.values = {_op: _op
                             ,par: par
+                            ,view: view
                             ,main: main};
    return _elm.HelloWorld.values;
 };

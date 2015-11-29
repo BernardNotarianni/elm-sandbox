@@ -7,14 +7,10 @@ import Html.Attributes exposing (..)
 -- VIEW
 
 par : List String -> Html
-par textLines = 
+par textLines =
   p [ ] (textLines |> List.map text) 
 
-
--- WIRE IT TOGETHER
-
-main : Html
-main =
+view =
   div [ class "container" ] [
     div [ class "row"] [ 
       div [ class "twelve column"] [
@@ -30,3 +26,10 @@ main =
       ]
     ]
   ]
+
+
+-- WIRE IT TOGETHER
+
+main : Html
+main =
+  view
