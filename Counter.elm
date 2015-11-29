@@ -36,7 +36,6 @@ view address model =
     , button [ onClick address Increment ] [ text "+" ]
     ]
 
-
 countStyle : Attribute
 countStyle =
   style
