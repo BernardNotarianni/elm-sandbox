@@ -2,6 +2,7 @@ module Page where
 
 import CounterPair exposing (Model, Action, init, update, view)
 import Login exposing (Model, Action, init, update, view)
+import Carrousel exposing (view)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -66,10 +67,18 @@ view address model =
           , div [ ] [ viewLogin address model.login ]
           ]
         ]
-
+{-
+        ,
+        div [ class "row" ]
+        [ div [class "twelve column" ]
+          [ Carrousel.view
+          ]
+        ]
+-}
       ]
     ]
   ]
+
 
 viewCounter : Signal.Address Action -> CounterPair.Model -> Html
 viewCounter address model =
