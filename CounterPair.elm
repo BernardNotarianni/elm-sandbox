@@ -20,6 +20,10 @@ init top bottom =
     , bottomCounter = Counter.init bottom
     }
 
+counts : Model -> List Int
+counts model =
+  [ model.topCounter, model.bottomCounter ]
+
 
 -- UPDATE
 
@@ -35,15 +39,10 @@ update action model =
     Reset -> init 0 0
 
     Top act ->
-      { model |
-          topCounter <- Counter.update act model.topCounter
-      }
+      { model | topCounter <- Counter.update act model.topCounter }
 
     Bottom act ->
-      { model |
-          bottomCounter <- Counter.update act model.bottomCounter
-      }
-
+      { model | bottomCounter <- Counter.update act model.bottomCounter }
 
 -- VIEW
 

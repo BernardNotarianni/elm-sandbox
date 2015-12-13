@@ -1,8 +1,10 @@
 module Page where
 
-import CounterPair exposing (Model, Action, init, update, view)
+import CounterPair exposing (Model, Action, init, update, view, counts)
 import Login exposing (Model, Action, init, update, view)
 import Carrousel exposing (view)
+
+import String exposing (join)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -21,6 +23,16 @@ init =
   { counters = CounterPair.init 0 0
   , login = Login.init
   }
+
+
+counters : Model -> List Int
+counters model =
+  CounterPair.counts model.counters
+
+
+total : Model -> Int
+total model =
+  counters model |> List.sum
 
 
 -- UPDATE
@@ -54,6 +66,13 @@ view address model =
           "Elm is an amazing langage to create HTML/JS web-applications. ",
           "I enjoy very much programming with it."
         ],
+
+        p [ ]
+        [ b [ ] [ text "The current counters are: "]
+        , String.join ", " (List.map toString (counters model)) |> text
+        ],
+
+        p [ ] [ b [ ] [ text "Total= "], total model |> toString |> text ],
 
         div [ class "row" ]
         [ div [class "one-half column" ]
