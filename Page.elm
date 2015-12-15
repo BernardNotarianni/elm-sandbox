@@ -1,6 +1,7 @@
 module Page where
 
 import CounterPair exposing (Model, Action, init, update, view, counts)
+import CounterList exposing (Model, Action, init, update, view, counts)
 import Login exposing (Model, Action, init, update, view)
 import Carrousel exposing (view)
 
@@ -14,20 +15,20 @@ import Html.Attributes exposing (..)
 -- MODEL
 
 type alias Model =
-  { counters : CounterPair.Model
+  { counters : CounterList.Model
   , login : Login.Model
   }
 
 init : Model
 init =
-  { counters = CounterPair.init 0 0
+  { counters = CounterList.init 5
   , login = Login.init
   }
 
 
 counters : Model -> List Int
 counters model =
-  CounterPair.counts model.counters
+  CounterList.counts model.counters
 
 
 total : Model -> Int
@@ -38,14 +39,14 @@ total model =
 -- UPDATE
 
 type Action
-  = CountIt CounterPair.Action
+  = CountIt CounterList.Action
   | LogIt Login.Action
 
 update : Action -> Model -> Model
 update action model =
   case action of
     CountIt counterPairAction ->
-      { model | counters <- CounterPair.update counterPairAction model.counters }
+      { model | counters <- CounterList.update counterPairAction model.counters }
     LogIt loginAction ->
       { model | login <- Login.update loginAction model.login }
 
@@ -86,22 +87,14 @@ view address model =
           , div [ ] [ viewLogin address model.login ]
           ]
         ]
-{-
-        ,
-        div [ class "row" ]
-        [ div [class "twelve column" ]
-          [ Carrousel.view
-          ]
-        ]
--}
       ]
     ]
   ]
 
 
-viewCounter : Signal.Address Action -> CounterPair.Model -> Html
+viewCounter : Signal.Address Action -> CounterList.Model -> Html
 viewCounter address model =
-  CounterPair.view (Signal.forwardTo address (CountIt)) model
+  CounterList.view (Signal.forwardTo address (CountIt)) model
 
 
 viewLogin : Signal.Address Action -> Login.Model -> Html
